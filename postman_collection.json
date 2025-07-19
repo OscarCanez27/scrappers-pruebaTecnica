@@ -1,0 +1,451 @@
+{
+	"info": {
+		"_postman_id": "api-risk-lists-collection",
+		"name": "API de Búsqueda en Listas de Alto Riesgo",
+		"description": "Colección de Postman para probar la API de búsqueda en listas de alto riesgo. Incluye todos los endpoints disponibles con ejemplos de uso.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12345678"
+	},
+	"item": [
+		{
+			"name": "Información de la API",
+			"item": [
+				{
+					"name": "Información general",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								""
+							]
+						},
+						"description": "Obtiene información general sobre la API, incluyendo endpoints disponibles y estado del servicio."
+					},
+					"response": []
+				},
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"health"
+							]
+						},
+						"description": "Verifica el estado de salud de la API."
+					},
+					"response": []
+				},
+				{
+					"name": "Fuentes disponibles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/sources",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sources"
+							]
+						},
+						"description": "Obtiene la lista de fuentes de datos disponibles para búsqueda."
+					},
+					"response": []
+				},
+				{
+					"name": "Información de Rate Limiting",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/rate-limit-info",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"rate-limit-info"
+							]
+						},
+						"description": "Obtiene información sobre los límites de velocidad configurados."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para obtener información sobre la API y su estado."
+		},
+		{
+			"name": "Búsqueda de Entidades",
+			"item": [
+				{
+					"name": "Buscar en todas las fuentes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"entity_name\": \"John Doe\",\n  \"source\": \"all\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"search"
+							]
+						},
+						"description": "Busca una entidad en todas las fuentes disponibles (Offshore Leaks, World Bank, OFAC)."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar solo en Offshore Leaks",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"entity_name\": \"John Doe\",\n  \"source\": \"offshore_leaks\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"search"
+							]
+						},
+						"description": "Busca una entidad únicamente en la base de datos de Offshore Leaks."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar solo en World Bank",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"entity_name\": \"John Doe\",\n  \"source\": \"world_bank\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"search"
+							]
+						},
+						"description": "Busca una entidad únicamente en la lista de firmas debarred del World Bank."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar solo en OFAC",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"entity_name\": \"John Doe\",\n  \"source\": \"ofac\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"search"
+							]
+						},
+						"description": "Busca una entidad únicamente en la lista de sanciones de OFAC."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar con nombre vacío (Error)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"entity_name\": \"\",\n  \"source\": \"all\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"search"
+							]
+						},
+						"description": "Ejemplo de error cuando se envía un nombre de entidad vacío."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar con fuente inválida (Error)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"entity_name\": \"John Doe\",\n  \"source\": \"invalid_source\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"search"
+							]
+						},
+						"description": "Ejemplo de error cuando se especifica una fuente inválida."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para buscar entidades en las listas de alto riesgo."
+		},
+		{
+			"name": "Ejemplos de Prueba",
+			"item": [
+				{
+					"name": "Buscar empresa conocida",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"entity_name\": \"Apple Inc\",\n  \"source\": \"all\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"search"
+							]
+						},
+						"description": "Ejemplo de búsqueda de una empresa conocida en todas las fuentes."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar persona",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"entity_name\": \"Vladimir Putin\",\n  \"source\": \"ofac\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"search"
+							]
+						},
+						"description": "Ejemplo de búsqueda de una persona en la lista de sanciones de OFAC."
+					},
+					"response": []
+				}
+			],
+			"description": "Ejemplos prácticos de búsquedas con casos reales."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Script que se ejecuta antes de cada petición",
+					"console.log('Ejecutando petición a: ' + pm.request.url);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Script que se ejecuta después de cada petición",
+					"console.log('Respuesta recibida con status: ' + pm.response.code);",
+					"",
+					"// Verificar que la respuesta sea exitosa",
+					"pm.test('Status code is 200', function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"// Verificar que la respuesta tenga contenido",
+					"pm.test('Response has content', function () {",
+					"    pm.response.to.not.be.empty;",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string",
+			"description": "URL base de la API"
+		},
+		{
+			"key": "api_token",
+			"value": "test_token_123",
+			"type": "string",
+			"description": "Token de autenticación para la API"
+		}
+	]
+} 
